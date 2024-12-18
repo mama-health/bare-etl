@@ -1,0 +1,14 @@
+version: "3.9"
+services:
+  spark:
+    image: bitnami/spark:latest
+    environment:
+      - SPARK_MODE=client
+    volumes:
+      - ./data:/app/data
+      - ./src:/app/src
+    working_dir: /app
+    command: >
+      spark-submit
+      --master local[2]
+      /app/src/main.py
